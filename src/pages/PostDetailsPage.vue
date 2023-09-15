@@ -5,11 +5,13 @@
         <div v-if="activePost" class=" elevation-5 my-2">
             <div class="col-12 card elevation-4">
                 <div class="card-header">
-                    <img class="profile-pic" :src="activePost.creator.picture" alt="">
-                    {{ activePost.creator.name }}
+                    <router-link :to="{name: 'Profile Page', params: {profileId: activePost.creator.id}}" @click.stop> 
+                        <img class="profile-pic" :src="activePost.creator.picture" alt="">
+                        {{ activePost.creator.name }}
+                    </router-link>
                 </div>
                 <div class="card-body">
-                    <img class="img-fluid blog-pic" :src="activePost.imgUrl" alt="">
+                        <img class="img-fluid post-pic" :src="activePost.imgUrl" alt="">
                     <p class="bg-shade p-2 rounded">{{ activePost.body }}</p>
                 </div>
                 <div class="card-footer text-end">
@@ -56,7 +58,7 @@ export default {
 
 <style lang="scss" scoped>
 
-.blog-pic{
+.post-pic{
     height: 400px;
     width: 400px; 
     width: 100%;

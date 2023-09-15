@@ -27,7 +27,11 @@ const routes = [
     name: 'Post Details',
     component: loadPage('PostDetailsPage'),
   },
-
+  {
+    path: '/profiles/:profileId',
+    name: 'Profile Page',
+    component: loadPage('ProfilePage')
+  },
 ]
 
 export const router = createRouter({

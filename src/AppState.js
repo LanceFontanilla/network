@@ -14,5 +14,7 @@ export const AppState = reactive({
   /** @type {Post||null} */
   activePost: null,
 
+  /**@type {Profile||null} */
+  activeProfile: null,
 
 })
