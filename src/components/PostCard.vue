@@ -1,13 +1,16 @@
 <template>
-    <div class="col-10">
-        <div>
+    <div class="col-10 card elevation-4">
+        <div class="card-header">
             <img class="profile-pic" :src="post.creator.picture" alt="">
             {{ post.creator.name }}
         </div>
-        <div class="">
+        <div class="card-body">
         <img class="img-fluid blog-pic" :src="post.imgUrl" alt="">
-        </div>
         <p class="bg-shade p-2 rounded">{{ post.body }}</p>
+        </div>
+        <div class="card-footer text-end">
+            <h4><span class="mdi mdi-heart-multiple"></span><span class="mdi mdi-heart-multiple-outline"></span></h4>
+        </div>
     </div>
 </template>
 
@@ -28,6 +31,10 @@ setup() {
 
 
 <style lang="scss" scoped>
+
+.blog-card{
+    color: black
+}
 
 .blog-pic{
     height: 400px;

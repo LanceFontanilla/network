@@ -1,6 +1,6 @@
 <template>
 <div class="container">
-  <div v-for="post in posts" :key="post.id" >
+  <div v-for="post in posts" :key="post.id" class="d-flex justify-content-center my-4" >
 
     <PostCard :post="post"/>
   </div>
