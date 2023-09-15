@@ -1,20 +1,42 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <div class="home-card p-5 bg-white rounded elevation-3">
-      <img src="https://bcw.blob.core.windows.net/public/img/8600856373152463" alt="CodeWorks Logo"
-        class="rounded-circle">
-      <h1 class="my-5 bg-dark text-white p-3 rounded text-center">
-        Vue 3 Starter
-      </h1>
-    </div>
+<div class="container">
+  <div v-for="post in posts" :key="post.id" >
+
+    <PostCard :post="post"/>
   </div>
+
+ 
+</div>
 </template>
 
 <script>
+import { computed, onMounted } from 'vue';
+import { postsService } from '../services/PostsService';
+import { logger } from '../utils/Logger';
+import Pop from '../utils/Pop';
+import { AppState } from '../AppState';
+import PostCard from '../components/PostCard.vue';
+
+
 export default {
-  setup() {
-    return {}
-  }
+    setup() {
+        onMounted(() => {
+            getPosts();
+        });
+        async function getPosts() {
+            try {
+                await postsService.getPosts();
+                logger.log('getting posts');
+            }
+            catch (error) {
+                Pop.error(error);
+            }
+        }
+        return {
+            posts: computed(() => AppState.posts)
+        };
+    },
+    components: { PostCard }
 }
 </script>
 
