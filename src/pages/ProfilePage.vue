@@ -17,9 +17,26 @@
 </template>
 
 <script>
+import { onMounted } from 'vue';
+import Pop from '../utils/Pop';
+import { useRoute } from 'vue-router';
+
 export default {
 setup() {
-  return {};
+    const route = useRoute()
+    onMounted(()=>{
+        
+    })
+    // async function (){
+    //     try {
+            
+    //     } catch (error) {
+    //         Pop.error(error)
+    //     }
+    // }
+  return {
+
+  };
 },
 };
 </script>
