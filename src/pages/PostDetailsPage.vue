@@ -14,6 +14,12 @@
                         <img class="img-fluid post-pic" :src="activePost.imgUrl" alt="">
                     <p class="bg-shade p-2 rounded">{{ activePost.body }}</p>
                 </div>
+                <div class="text-end">
+                    <button v-if="activePost.creatorId == account.id" @click="deletePost" class="btn btn-danger">Delete Listing <i class="mdi mdi-delete-forever"></i></button>
+                    <section v-else>
+                    <i class="mdi mdi-loading mdi-spin text-primary fs-2">loading</i>
+                    </section>
+                </div>
                 <div class="card-footer text-end">
                     <h4><span class="mdi mdi-heart-multiple"></span><span class="mdi mdi-heart-multiple-outline"></span></h4>
                 </div>
@@ -32,6 +38,7 @@ import { useRoute } from 'vue-router';
 import Pop from '../utils/Pop';
 import { postsService } from '../services/PostsService';
 import { logger } from '../utils/Logger';
+import { router } from '../router';
 
 export default {
     
@@ -49,7 +56,20 @@ export default {
 
 
     return { 
-        activePost: computed(()=> AppState.activePost)
+        activePost: computed(()=> AppState.activePost),
+        account: computed(()=> AppState.account),
+        async deletePost(){
+            try {
+                if(await Pop.confirm('Are you sure you want to delete this post?')){
+                    const postId = AppState.activePost.id
+                    await postsService.deletePost(postId)
+                    router.push({name: 'Posts'})
+                    Pop.success('You have deleted this post.')
+                }
+            } catch (error) {
+                Pop.error(error)
+            }
+        }
      }
     }
 };
