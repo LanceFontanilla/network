@@ -1,8 +1,8 @@
 
 <template>
     <div class="container">
-    <div class="d-flex justify-content-center">
-        <div v-if="activePost" class=" elevation-5 my-2">
+    
+        <div v-if="activePost" class=" elevation-5 my-4">
             <div class="col-12 card elevation-4">
                 <div class="card-header">
                     <router-link :to="{name: 'Profile Page', params: {profileId: activePost.creator.id}}" @click.stop> 
@@ -21,7 +21,7 @@
             
         </div>
     </div>
-    </div>
+    
 </template>
 
 

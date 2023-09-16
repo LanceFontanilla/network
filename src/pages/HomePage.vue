@@ -1,11 +1,11 @@
 <template>
 <div class="container">
-  <div v-for="post in posts" :key="post.id" class="d-flex justify-content-center my-4" >
+  <div v-for="post in posts" :key="post.id" class="my-4" >
 
     <PostCard :post="post"/>
   </div>
 
- 
+
 </div>
 </template>
 
@@ -49,7 +49,7 @@ export default {
   user-select: none;
 
   .home-card {
-    width: 50vw;
+    width: 100px;
 
     >img {
       height: 200px;

@@ -1,23 +1,29 @@
 <template>
-    <div v-if="profile" class="container">
-        <div>
-            <h2>
+
+    <div class="cover-img card elevation-5 my-5">
+            <div>
+                <img :src="profile.picture" :alt="profile.name" class="profile-pic">
+            </div>
+<h2>
                 {{ profile.name }}
-            </h2>
-            <img :src="profile.picture" :alt="profile.name" class="profile-pic">
-            <img :src="profile.coverImg" :alt="profile.name">
-            <p>{{ profile.bio }}</p>
-            <a :href="profile.github"></a>
+            </h2>         
+<p>{{ profile.bio }}</p>
+<a :href="profile.github"></a>
         </div>
-        
-        <div v-for="post in posts" :key="post.id" class="post-pic">
-           
+
+
+    <div class="container">
+        <div v-for="post in posts" :key="post.id" class="my-4">
+
             <PostCard :post="post" />
         </div>
 
 
     </div>
 </template>
+
+
+
 
 <script>
 import { computed, onMounted } from 'vue';
@@ -55,7 +61,7 @@ setup() {
         profile: computed(()=> AppState.activeProfile),
         account: computed(()=> AppState.account),
         posts: computed(()=> AppState.posts),
-
+        coverImg: computed(() => `url(${AppState.activeProfile?.coverImg})`)
 
   };
 },
@@ -64,6 +70,13 @@ setup() {
 
 
 <style lang="scss" scoped>
+.cover-img{
+  background-image: v-bind(coverImg);
+  min-height: 30vh;
+  background-position: center;
+  background-size: cover;
+}
+
 .post-pic{
     height: 400px;
     width: 400px; 
