@@ -45,7 +45,7 @@ class PostsService {
     async changePage(url) {
         logger.log('page', url)
         const res = await api.get(url)
-        logger.log('got posts', res.data)
+        logger.log('change page posts', res.data)
         AppState.posts = res.data.posts.map(post => new Post(post))
         AppState.pageNumber = res.data.page
         AppState.totalPages = res.data.totalPages
