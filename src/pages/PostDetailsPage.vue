@@ -3,7 +3,7 @@
     <div class="container">
     
         <div v-if="activePost" class=" elevation-5 my-4">
-            <div class="col-12 card elevation-4">
+                    <div class="col-12 card elevation-4">
                 <div class="card-header">
                     <router-link :to="{name: 'Profile Page', params: {profileId: activePost.creator.id}}" @click.stop> 
                         <img class="profile-pic" :src="activePost.creator.picture" alt="">
