@@ -1,20 +1,30 @@
 <template>
 
-    <div class="cover-img card elevation-5 my-5">
-            <div>
-                <img :src="profile.picture" :alt="profile.name" class="profile-pic">
-            </div>
-<h2>
-                {{ profile.name }}
-            </h2>         
-<p>{{ profile.bio }}</p>
-<a :href="profile.github"></a>
-        </div>
-
-
     <div class="container">
-        <div v-for="post in posts" :key="post.id" class="my-4">
+<section class="row">
 
+    <div class="col-12 profile-card-header elevation-5 mt-3">
+        <img :src="profile.picture" alt="" class="profile-pic"> 
+        
+    </div>
+    <div class="profile-card-body elevation-5 mb-5">
+        <section class="row">
+         <div class="col-6">
+            <h4>Summer 2018</h4>
+        </div>
+        <div class="col-6 text-end">
+            Links
+        </div>   
+        </section>
+        
+        <h1>{{ profile.name }}</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit sequi laborum quo quaerat voluptatibus dolorem magni quae eligendi culpa harum cupiditate, modi aut esse tempore impedit quas velit? Commodi, nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere dolores vero cum culpa quos veniam quibusdam, iusto nulla deserunt alias voluptate impedit commodi voluptatibus quasi. Aut, amet. Dicta, laborum delectus!</p>
+        
+    </div>
+</section>
+
+
+        <div v-for="post in posts" :key="post.id" class="my-4">
             <PostCard :post="post" />
         </div>
 
@@ -90,6 +100,26 @@ setup() {
   object-fit: cover;
   object-position: center;
   border-radius: 50em;
+}
+
+.profile-card-header{
+    background-image: v-bind(coverImg);
+    min-height: 30vh;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.profile-card-body{
+    min-height: 40vh;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 20px;
+    
+
 }
 </style>
 

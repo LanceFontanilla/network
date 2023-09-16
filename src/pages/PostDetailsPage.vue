@@ -27,7 +27,7 @@
 
 <script>
 import { AppState } from '../AppState';
-import { computed, reactive, onMounted } from 'vue';
+import { computed, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import Pop from '../utils/Pop';
 import { postsService } from '../services/PostsService';
