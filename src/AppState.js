@@ -17,4 +17,9 @@ export const AppState = reactive({
   /**@type {Profile||null} */
   activeProfile: null,
 
+  /** @type {Number} */
+  pageNumber: 1,
+  /** @type{Number} */
+  totalPages: 1,
+
 })

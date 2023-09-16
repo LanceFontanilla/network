@@ -14,7 +14,7 @@ class PostsService {
         AppState.posts = res.data.posts.map(post => new Post(post))
     }
     async getPostById(postId) {
-        AppState.posts = []
+        AppState.activePost = null
         const res = await api.get(`api/posts/${postId}`)
         logger.log(res.data, 'getting post by id')
         AppState.activePost = new Post(res.data)
@@ -34,17 +34,22 @@ class PostsService {
         return newPost
     }
     async deletePost(postId) {
-        const foundPost = AppState.posts.find(post => postId == post.id)
-        const postIndex = AppState.posts.indexOf(foundPost)
         const res = await api.delete(`api/posts/${postId}`)
         logger.log('deleting post', res.data)
-        AppState.posts.splice(postIndex, 1)
+        AppState.activePost = null
+        let indexToRemove = AppState.posts.findIndex(post => post.id == postId)
+        if (indexToRemove >= 0) {
+            AppState.posts.splice(indexToRemove, 1)
+        }
     }
-
-    // setActivePost(postId) {
-    //     const post = AppState.posts.find(post => post.id == postId)
-    //     AppState.activePost = post
-    // }
+    async changePage(url) {
+        logger.log('page', url)
+        const res = await api.get(url)
+        logger.log('got posts', res.data)
+        AppState.posts = res.data.posts.map(post => new Post(post))
+        AppState.pageNumber = res.data.page
+        AppState.totalPages = res.data.totalPages
+    }
 
 }
 

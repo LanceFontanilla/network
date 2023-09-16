@@ -1,8 +1,7 @@
 
 <template>
     <div class="container">
-    
-        <div v-if="activePost" class=" elevation-5 my-4">
+        <section v-if="activePost" class=" elevation-5 my-4">
                     <div class="col-12 card elevation-4">
                 <div class="card-header">
                     <router-link :to="{name: 'Profile Page', params: {profileId: activePost.creator.id}}" @click.stop> 
@@ -16,17 +15,17 @@
                 </div>
                 <div class="text-end">
                     <button v-if="activePost.creatorId == account.id" @click="deletePost" class="btn btn-danger">Delete Listing <i class="mdi mdi-delete-forever"></i></button>
-                    <section v-else>
-                    <i class="mdi mdi-loading mdi-spin text-primary fs-2">loading</i>
-                    </section>
                 </div>
                 <div class="card-footer text-end">
                     <h4><span class="mdi mdi-heart-multiple"></span><span class="mdi mdi-heart-multiple-outline"></span></h4>
                 </div>
             </div>
-            
+        </section>
+        <section v-else>
+        <i class="mdi mdi-loading mdi-spin text-primary fs-2">loading</i>
+        </section>
+        
         </div>
-    </div>
     
 </template>
 
