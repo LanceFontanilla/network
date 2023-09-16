@@ -12,6 +12,8 @@ class PostsService {
         const res = await api.get('api/posts')
         logger.log('got posts', res.data)
         AppState.posts = res.data.posts.map(post => new Post(post))
+        AppState.pageNumber = res.data.page
+        AppState.totalPages = res.data.totalPages
     }
     async getPostById(postId) {
         AppState.activePost = null
@@ -25,6 +27,10 @@ class PostsService {
         const res = await api.get(`api/posts?creatorId=${profileId}`)
         logger.log('getting posts by profile id', res.data)
         AppState.posts = res.data.posts.map(post => new Post(post))
+        AppState.pageNumberById = res.data.page
+        AppState.totalPagesById = res.data.totalPages
+        logger.log(res.data.totalPages)
+
     }
     async createPost(post) {
         const res = await api.post('api/posts', post)
@@ -49,6 +55,14 @@ class PostsService {
         AppState.posts = res.data.posts.map(post => new Post(post))
         AppState.pageNumber = res.data.page
         AppState.totalPages = res.data.totalPages
+    }
+    async changePageByProfileId(profileId) {
+        logger.log('profileId', profileId)
+        const res = await api.get(`api/posts?creatorId=${profileId}&`)
+        logger.log('change profile page posts', res.data)
+        AppState.posts = res.data.posts.map(post => new Post(post))
+        AppState.pageNumberById = res.data.page
+        AppState.totalPagesById = res.data.totalPages
     }
 
 }

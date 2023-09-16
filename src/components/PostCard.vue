@@ -1,4 +1,5 @@
 <template>
+ 
     <router-link :to="{name: 'Post Details', params: {postId: post.id}}">
         <div class="col-12 card elevation-4">
             <div class="card-header">
@@ -9,7 +10,7 @@
                 <img class="img-fluid blog-pic" :src="post.imgUrl" alt="">
                 <p class="bg-shade p-2 rounded">{{ post.body }}</p>
             </div>
-                
+               
             <div class="card-footer text-end">
                 <h4><span class="mdi mdi-heart-multiple"></span><span class="mdi mdi-heart-multiple-outline"></span></h4>
             </div>

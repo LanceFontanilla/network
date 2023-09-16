@@ -1,6 +1,12 @@
 
 <template>
     <div class="container">
+        <section class="col-12 d-flex">
+            <div v-for="flyer in flyers" :key="flyer.id"    class="mx-1 my-4">
+                <FlyerCardBanner :flyer="flyer"/>
+            </div>
+        </section>
+
         <section v-if="activePost" class=" elevation-5 my-4">
                     <div class="col-12 card elevation-4">
                 <div class="card-header">
@@ -25,6 +31,7 @@
         <i class="mdi mdi-loading mdi-spin text-primary fs-2">loading</i>
         </section>
         
+
         </div>
     
 </template>
@@ -38,11 +45,16 @@ import Pop from '../utils/Pop';
 import { postsService } from '../services/PostsService';
 import { logger } from '../utils/Logger';
 import { router } from '../router';
+import FlyerCard from '../components/FlyerCard.vue'
+import { flyersService } from '../services/FlyersService';
 
 export default {
     
     setup(){
-        onMounted(() => getPostById())
+        onMounted(() => {
+            getPostById()
+            getFlyers()
+        });
         const route = useRoute()
         async function getPostById(){
             try {
@@ -52,7 +64,14 @@ export default {
                 Pop.error(error)
             }
         }
-
+        async function getFlyers() {
+            try {
+                await flyersService.getFlyers();
+                logger.log('got flyers')
+            } catch (error) {
+                Pop.error(error)
+            }
+        }
 
     return { 
         activePost: computed(()=> AppState.activePost),
@@ -68,9 +87,12 @@ export default {
             } catch (error) {
                 Pop.error(error)
             }
-        }
+        },
+        
+        flyers: computed(() => AppState.flyers),
      }
-    }
+    },
+    components: { FlyerCard }
 };
 </script>
 

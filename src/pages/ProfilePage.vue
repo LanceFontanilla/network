@@ -27,16 +27,36 @@
     </section> -->
 
 
+    <section v-if="!searchTerm" class="row justify-content-between mb-2 fw-bold align-items-center">
+        <button @click="changePageByProfileId(pageNumberById - 1)" :disabled="pageNumberById <= 1" class="col-6 col-md-3 btn btn-warning">Newer <i class="mdi mdi-arrow-left"></i></button>
+        {{ pageNumberById }}
+        <button @click="changePageByProfileId(pageNumberByIdById + 1)" :disabled="pageNumberById >= totalPagesById" class="col-6 col-md-3 btn btn-warning">Older <i class="mdi mdi-arrow-right"></i></button>
+
+    </section>
+        <section v-else class="row justify-content-between mb-2">
+        <button @click="changePageWithSearch(pageNumberById - 1)" :disabled="pageNumberById <= 1" class="col-6 col-md-3 btn btn-success">Newer <i class="mdi mdi-arrow-left"></i></button>
+        {{ pageNumberById }}
+        <button @click="changePageWithSearch(pageNumberById + 1)" :disabled="pageNumberById >= totalPagesById" class="col-6 col-md-3 btn btn-success">Older <i class="mdi mdi-arrow-right"></i></button>
+    </section>
 
 
+    <div class="row">
 
+    <section class="col-8">
+        <div v-for="post in posts" :key="post.id" class="my-4" >
+        <PostCard :post="post"/>
+        </div>
+    </section>
 
-        <div v-for="post in posts" :key="post.id" class="my-4">
-            <PostCard :post="post" />
-        </div> 
+    <section class="col-4">
+        <div v-for="flyer in flyers" :key="flyer.id" class="my-4">
+        <FlyerCard :flyer="flyer"/>
+        </div>
+    </section>
 
+    </div>
     </div> 
-   
+
 </template>
 
 
@@ -49,13 +69,16 @@ import { useRoute } from 'vue-router';
 import { postsService } from '../services/PostsService';
 import { AppState } from '../AppState';
 import { profilesService } from '../services/ProfilesService';
+import { flyersService } from '../services/FlyersService';
+import { logger } from '../utils/Logger';
 
 
 export default {
 setup() {
     onMounted(()=>{
         getProfileById();
-        getPostsByProfileId()        
+        getPostsByProfileId()   
+        getFlyers()     
         
     });
     const route = useRoute();
@@ -66,7 +89,14 @@ setup() {
             Pop.error(error)
         }
     }
-    
+    async function getFlyers() {
+        try {
+            await flyersService.getFlyers();
+            logger.log('got flyers')
+        } catch (error) {
+            Pop.error(error)
+        }
+    }
     async function getProfileById(){
         try {
             await profilesService.getProfileById(route.params.profileId)
@@ -75,11 +105,21 @@ setup() {
         }
     }
   return {
+        getPostsByProfileId,
+    async changePageByProfileId(number) {
+        try {
+            await postsService.changePageByProfileId(`api/posts?&page=${number}`)
+        } catch (error) {
+            Pop.error(error)
+        }
+            },
         profile: computed(()=> AppState.activeProfile),
         account: computed(()=> AppState.account),
         posts: computed(()=> AppState.posts),
-        
-
+        pageNumberById: computed(() => AppState.pageNumberById),
+        totalPagesById: computed(() => AppState.totalPagesById),
+        searchTermById: computed(() => AppState.searchTermById),
+        flyers: computed(() => AppState.flyers),
   };
 },
 };

@@ -19,7 +19,17 @@ export const AppState = reactive({
 
   /** @type {Number} */
   pageNumber: 1,
-  /** @type{Number} */
-  totalPages: 2,
+
+  /** @type {Number} */
+  totalPages: 1,
+
+  /** @type {Number} */
+  pageNumberById: 1,
+
+  /** @type {Number} */
+  totalPagesById: 1,
+
+  /** @type {Flyer[]} */
+  flyers: [],
 
 })
