@@ -10,25 +10,36 @@
         <section v-if="activePost" class=" elevation-5 my-4">
                     <div class="col-12 card elevation-4">
                 <div class="card-header">
-                    <router-link :to="{name: 'Profile Page', params: {profileId: activePost.creator.id}}" @click.stop> 
+                    <router-link style="text-decoration: none; color:black" :to="{name: 'Profile Page', params: {profileId: activePost.creator.id}}" @click.stop> 
                         <img class="profile-pic" :src="activePost.creator.picture" alt="">
                         {{ activePost.creator.name }}
                     </router-link>
                 </div>
-                <div class="card-body">
-                        <img class="img-fluid post-pic" :src="activePost.imgUrl" alt="">
-                    <p class="bg-shade p-2 rounded">{{ activePost.body }}</p>
+                <div class="card-body text-center">
+                    <img class="img-fluid post-pic" :src="activePost.imgUrl" alt="">
+                    <div class="">
+                        <p>{{ activePost.body }}</p>
+                        <p>{{ activePost.createdAt }}</p>
+                    </div>
                 </div>
                 <div class="text-end">
                     <button v-if="activePost.creatorId == account.id" @click="deletePost" class="btn btn-danger">Delete Listing <i class="mdi mdi-delete-forever"></i></button>
                 </div>
                 <div v-if="user.isAuthenticated" class="card-footer text-end">
-                    <button @click="likePost" class="btn btn-dark">Like Post<span class="mdi mdi-heart-multiple"></span></button>
+                    <h4><span class="mdi mdi-heart-multiple"></span> {{ activePost.likes.length }}</h4>
+                    <button @click="likePost" class="btn btn-dark">Like Post <span class="mdi mdi-heart-multiple"></span></button>
+                    <!-- <input class="form-check-input" type="checkbox" @click="likePost"> Like Post <span class="mdi mdi-heart-multiple"></span> -->
                 </div>
                 <div v-else class="card-footer text-end">
                     <h4>Login To Like Post</h4>
                     <span class="mdi mdi-heart-multiple"></span>
                     <span class="mdi mdi-heart-multiple-outline"></span>
+                </div>
+                <div>
+
+                </div>
+                <div>
+
                 </div>
             </div>
         </section>
@@ -81,10 +92,11 @@ export default {
         }
 
     return { 
+        getPostById,
         activePost: computed(()=> AppState.activePost),
         account: computed(()=> AppState.account),
         user: computed(() => AppState.user),
-          
+        flyers: computed(() => AppState.flyers),
         async deletePost(){
             try {
                 if(await Pop.confirm('Are you sure you want to delete this post?')){
@@ -107,7 +119,7 @@ export default {
             }
         },
 
-        flyers: computed(() => AppState.flyers),
+        
      }
     },
     
@@ -131,4 +143,6 @@ export default {
   object-position: center;
   border-radius: 50em;
 }
+
+
 </style>

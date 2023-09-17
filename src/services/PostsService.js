@@ -62,9 +62,9 @@ class PostsService {
         AppState.pageNumber = res.data.page
         AppState.totalPages = res.data.totalPages
     }
-    async changePageByProfileId(profileId, url) {
-        logger.log('profileId', profileId, url)
-        const res = await api.get(`api/posts?creatorId=${profileId}`, url)
+    async changePageByProfileId(profileId, number) {
+        logger.log('profileId', profileId, number)
+        const res = await api.get(`api/posts?creatorId=${profileId}&page=${number}`)
         logger.log('change profile page posts', res.data)
         AppState.posts = res.data.posts.map(post => new Post(post))
         AppState.pageNumberById = res.data.page

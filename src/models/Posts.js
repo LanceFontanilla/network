@@ -8,6 +8,9 @@ export class Post {
         this.creatorId = data.creatorId
         this.likeIds = data.likeIds
         this.creator = data.creator
-        this.createdAt = new Date(data.createdAt).toLocaleDateString()
+        this.createdAt = new Date(data.createdAt).toLocaleDateString() + ' ' + new Date(data.createdAt).toLocaleTimeString()
+        this.likes = data.likes
+        this.completedClass = data.completed ? 'todo-complete' : ''
+        this.checkboxState = data.completed ? 'checked' : ''
     }
 }

@@ -30,6 +30,7 @@ export default {
 }
 
 
+
 footer {
   display: grid;
   place-content: center;

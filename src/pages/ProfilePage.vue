@@ -47,24 +47,21 @@
           <Login />
     </div>
 
-    <div class="container mb-4">
-      <SearchBar/>
-    </div>
 
     <section v-if="!searchTerm" class="row justify-content-between mb-2 fw-bold align-items-center mx-0">
-        <button @click="changePageByProfileId(pageNumberById - 1)" :disabled="pageNumberById <= 1" class="col-12 col-md-3 btn btn-warning"> <i class="mdi mdi-arrow-left">Newer</i></button>
+        <button @click="changePageByProfileId(profileId, pageNumberById - 1)" :disabled="pageNumberById <= 1" class="col-12 col-md-3 btn btn-dark"> <i class="mdi mdi-arrow-left">Newer</i></button>
         <div class="col-12 col-md-3 text-center">
         {{ pageNumberById }}
         </div>
-        <button @click="changePageByProfileId(pageNumberByIdById + 1)" :disabled="pageNumberById >= totalPagesById" class="col-12 col-md-3 btn btn-warning">Older <i class="mdi mdi-arrow-right"></i></button>
+        <button @click="changePageByProfileId(profileId, pageNumberById + 1)" :disabled="pageNumberById >= totalPagesById" class="col-12 col-md-3 btn btn-dark">Older <i class="mdi mdi-arrow-right"></i></button>
 
     </section>
         <section v-else class="row justify-content-between mb-2 fw-bold align-items-center mx-0">
-        <button @click="changePageWithSearch(pageNumberById - 1)" :disabled="pageNumberById <= 1" class="col-12 col-md-3 btn btn-success"><i class="mdi mdi-arrow-left">Newer </i></button>
+        <button @click="changePageWithSearch(pageNumberById - 1)" :disabled="pageNumberById <= 1" class="col-12 col-md-3 btn btn-secondary"><i class="mdi mdi-arrow-left">Newer </i></button>
         <div class="col-12 col-md-3 text-center">
-        {{ pageNumberById }}
+        {{ pageNumberById }}2
         </div>
-        <button @click="changePageWithSearch(pageNumberById + 1)" :disabled="pageNumberById >= totalPagesById" class="col-12 col-md-3 btn btn-success">Older <i class="mdi mdi-arrow-right"></i></button>
+        <button @click="changePageWithSearch(pageNumberById + 1)" :disabled="pageNumberById >= totalPagesById" class="col-12 col-md-3 btn btn-secondary">Older <i class="mdi mdi-arrow-right"></i></button>
     </section>
 
 
@@ -134,14 +131,15 @@ setup() {
     }
   return {
         getPostsByProfileId,
-        async changePageByProfileId(number) {
+        async changePageByProfileId(profileId, number) {
             try {
-            await postsService.changePageByProfileId(route.params.profileId&`api/posts?page=${number}`)
+            await postsService.changePageByProfileId(profileId, number)
         } catch (error) {
             Pop.error(error)
         }
             },
         profile: computed(()=> AppState.activeProfile),
+        profileId: computed(()=> route.params.profileId),
         account: computed(()=> AppState.account),
         user: computed(() => AppState.user),
         posts: computed(()=> AppState.posts),
@@ -189,7 +187,7 @@ setup() {
 }
 
 .profile-card-header{
-   
+
     min-height: 30vh;
     background-position: center;
     background-size: cover;
