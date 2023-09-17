@@ -11,32 +11,50 @@
           <h3>Edit Profile</h3>
       
           <form @submit.prevent="editProfile" class="row">
-            <div class="mb-2 col-6">
+          <div class="mb-2 col-6">
               <label for="">
-                name
+              name
               </label>
-            <input v-model="editable.name" class="form-control" type="text">
+              <input v-model="editable.name" class="form-control" type="text">
           </div>
-            <div class="mb-2 col-6">
+          <div class="mb-2 col-6">
               <label for="">
-                picture
+              email
               </label>
-            <input v-model="editable.picture" class="form-control" type="text">
+              <input v-model="editable.email" class="form-control" type="text">
           </div>
-            <div class="mb-2 col-12">
+          <div class="mb-2 col-6">
               <label for="">
-                github
+              picture
               </label>
-            <input v-model="editable.github" class="form-control" type="text">
+              <input v-model="editable.picture" class="form-control" type="text">
           </div>
-            <div class="mb-2 col-12">
+          <div class="mb-2 col-6">
               <label for="">
-                bio
+              coverImg
+              </label>
+              <input v-model="editable.coverImg" class="form-control" type="text">
+          </div>
+          <div class="mb-2 col-6">
+              <label for="">
+              github
+              </label>
+              <input v-model="editable.github" class="form-control" type="text">
+          </div>
+          <div class="mb-2 col-6">
+              <label for="">
+              linkedin
+              </label>
+              <input v-model="editable.linkdin" class="form-control" type="text">
+          </div>
+          <div class="mb-2 col-12">
+              <label for="">
+              bio
               </label>
               <textarea v-model="editable.bio" rows="10" class="form-control h-90"></textarea>
           </div>
           <div class="text-end">
-            <button class="btn btn-success">Save Changes <i class="mdi mdi-check"></i></button>
+            <button class="btn btn-success">Save Changes</button>
           </div>
 
           </form>

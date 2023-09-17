@@ -2,18 +2,24 @@
 
 <div v-if="profile" class="container">
 <section class="mt-4">
-    <div class="row d-flex justify-content-between text-center cover-img">
+    <div class="row d-flex justify-content-between text-center align-items-center cover-img">
 
-        <div class="col-3">
+        <div class="col-3 my-4">
             <img class="profile-pic img-fluid" :src="profile.picture" alt=""> 
-            <h3 class="mt-2">{{ profile.name }}</h3>
-        </div> 
-        <div class="col-3">
-            links
         </div>
-    </div>
-
-    <div class="p-2 mb-3">
+            
+        </div>
+        <div class="row d-flex justify-content-between text-center alight-items-center">
+            <div class="col-3 text-center">
+                <h3 class="my-2">{{ profile.name }}</h3>
+            </div> 
+            
+            <div class="col-3 my-3">
+                links
+            </div>
+        </div>
+            
+    <div class="col-12 p-3 mb-3">
         <p>{{ profile.bio }}</p>
     </div>
 
@@ -125,7 +131,7 @@ setup() {
 <style lang="scss" scoped>
 .cover-img{
   background-image: v-bind(coverImg);
-  min-height: 30vh;
+  max-height: 30vh;
   background-position: center;
   background-size: cover;
 }
