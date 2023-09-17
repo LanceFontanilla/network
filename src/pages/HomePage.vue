@@ -5,25 +5,23 @@
 </div>
 
 <div class="container">
-
-<div>
+<div class="col-12">
   <ChangePageButtons/>
 </div>
 
+<!-- //SECTION - posts -->
 <div class="row">
-
-  <section class="col-8">
+  <section class="col-12 col-md-8">
     <div v-for="post in posts" :key="post.id" class="my-4" >
       <PostCard :post="post"/>
     </div>
   </section>
-  
-  <section class="col-4">
+<!-- //SECTION - ads -->  
+  <section class="col-12 col-md-4">
     <div v-for="flyer in flyers" :key="flyer.id" class="my-4">
-      <FlyerCard :flyer="flyer"/>
+      <FlyerCardTall :flyer="flyer"/>
     </div>
-  </section>
-  
+  </section>  
 </div>
 
 
@@ -38,7 +36,7 @@ import Pop from '../utils/Pop';
 import { AppState } from '../AppState';
 import PostCard from '../components/PostCard.vue';
 import { flyersService } from '../services/FlyersService'
-import  FlyerCard  from '../components/FlyerCard.vue'
+import  FlyerCardTall  from '../components/FlyerCardTall.vue'
 
 export default {
     setup() {
@@ -48,11 +46,11 @@ export default {
         });
         async function getPosts() {
             try {
-                await postsService.getPosts();
-                logger.log('plain get posts');
+            await postsService.getPosts();
+              logger.log('plain get posts');
             }
             catch (error) {
-                Pop.error(error);
+              Pop.error(error);
             }
         }
         async function getFlyers(){
@@ -60,7 +58,7 @@ export default {
               await flyersService.getFlyers(); 
               logger.log('got flyers')
             } catch (error) {
-            Pop.error(error)
+              Pop.error(error)
             }
         }
         return {
@@ -71,7 +69,7 @@ export default {
 
         };
     },
-    components: { PostCard, FlyerCard }
+    components: { PostCard, FlyerCardTall }
     
 }
 </script>

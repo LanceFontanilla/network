@@ -39,35 +39,38 @@
 
 
     <section v-if="!searchTerm" class="row justify-content-between mb-2 fw-bold align-items-center">
-        <button @click="changePageByProfileId(pageNumberById - 1)" :disabled="pageNumberById <= 1" class="col-6 col-md-3 btn btn-warning">Newer <i class="mdi mdi-arrow-left"></i></button>
+        <button @click="changePageByProfileId(pageNumberById - 1)" :disabled="pageNumberById <= 1" class="col-12 col-md-3 btn btn-warning"> <i class="mdi mdi-arrow-left">Newer</i></button>
+        <div class="col-12 col-md-3 text-center">
         {{ pageNumberById }}
-        <button @click="changePageByProfileId(pageNumberByIdById + 1)" :disabled="pageNumberById >= totalPagesById" class="col-6 col-md-3 btn btn-warning">Older <i class="mdi mdi-arrow-right"></i></button>
+        </div>
+        <button @click="changePageByProfileId(pageNumberByIdById + 1)" :disabled="pageNumberById >= totalPagesById" class="col-12 col-md-3 btn btn-warning">Older <i class="mdi mdi-arrow-right"></i></button>
 
     </section>
         <section v-else class="row justify-content-between mb-2">
-        <button @click="changePageWithSearch(pageNumberById - 1)" :disabled="pageNumberById <= 1" class="col-6 col-md-3 btn btn-success">Newer <i class="mdi mdi-arrow-left"></i></button>
+        <button @click="changePageWithSearch(pageNumberById - 1)" :disabled="pageNumberById <= 1" class="col-12 col-md-3 btn btn-success"><i class="mdi mdi-arrow-left">Newer </i></button>
+        <div class="col-12 col-md-3 text-center">
         {{ pageNumberById }}
-        <button @click="changePageWithSearch(pageNumberById + 1)" :disabled="pageNumberById >= totalPagesById" class="col-6 col-md-3 btn btn-success">Older <i class="mdi mdi-arrow-right"></i></button>
+        </div>
+        <button @click="changePageWithSearch(pageNumberById + 1)" :disabled="pageNumberById >= totalPagesById" class="col-12 col-md-3 btn btn-success">Older <i class="mdi mdi-arrow-right"></i></button>
     </section>
 
 
 
     <div class="row">
-
-    <section class="col-8">
+    <section class="col-12 col-md-8">
         <div v-for="post in posts" :key="post.id" class="my-4" >
         <PostCard :post="post"/>
         </div>
     </section>
 
-    <section class="col-4">
+    <section class="col-12 col-md-4">
         <div v-for="flyer in flyers" :key="flyer.id" class="my-4">
-        <FlyerCard :flyer="flyer"/>
+        <FlyerCardTall :flyer="flyer"/>
         </div>
     </section>
 
     </div>
-    </div> 
+</div> 
 
 </template>
 

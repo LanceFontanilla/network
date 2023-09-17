@@ -2,12 +2,12 @@
 
      <div class="container-fluid text-light">
       <section class="row mt-3">
-        <div class="col-3 bg-dark p-3">
+        <div class="col-12 col-md-3 bg-dark p-3">
           <h3>Welcome {{ account.name }}</h3>
           <img class="rounded" :src="account.picture" alt="" />
           <p>{{ account.email }}</p>
         </div>
-        <div class="col-9 bg-dark p-3">
+        <div class="col-12 col-md-9 bg-dark p-3">
           <h3>Edit Profile</h3>
       
           <form @submit.prevent="editProfile" class="row">
@@ -72,15 +72,19 @@
           </form>
         </div>
       </section>
-     
 
-
-    <div class="text-dark">
-      <h1 class="ms-4 mt-5">Create New Post</h1>
-      <FormCard/>
+      
+      <div class="text-dark">
+        <h1 class="ms-4 mt-5">Create New Post</h1>
+        <FormCard/>
+      </div>
     </div>
-  </div>
-
+    
+    <section class="col-12 d-flex">
+      <div v-for="flyer in flyers" :key="flyer.id" class="mx-2 mt-4">
+        <FlyerCardBanner :flyer="flyer"/>
+      </div>
+    </section>
 </template>
 
 <script>
@@ -92,10 +96,12 @@ import FormCard from '../components/FormCard.vue'
 import { useRouter } from 'vue-router';
 import { logger } from '../utils/Logger';
 import { accountService } from '../services/AccountService';
+import { flyersService } from '../services/FlyersService';
 
 
 export default {
   setup() {
+    getFlyers()
     const formData = ref({})
     const editable = ref({})
     const router = useRouter()
@@ -105,10 +111,19 @@ export default {
       AppState.account
       editable.value = AppState.account
     })
+    async function getFlyers() {
+      try {
+      await flyersService.getFlyers();
+        logger.log('got flyers')
+      } catch (error) {
+        Pop.error(error)
+      }
+    }
 
     return {
       editable,
       account: computed(() => AppState.account),
+      flyers: computed(() => AppState.flyers),
       formData,
       async createPost(){
         try {
@@ -127,7 +142,8 @@ export default {
         } catch (error) {
           Pop.error(error)
         }
-      } 
+      }, 
+
     }
 
   },

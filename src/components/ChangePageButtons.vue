@@ -1,19 +1,20 @@
 <template>
 
     <section v-if="!searchTerm" class="row justify-content-between mb-2 fw-bold align-items-center mx-0">
-    <button @click="changePage(pageNumber - 1)" :disabled="pageNumber <= 1" class="col-6 col-md-3 btn btn-warning">Newer <i class="mdi mdi-arrow-left"></i></button>
-    {{ pageNumber }}
-    <button @click="changePage(pageNumber + 1)" :disabled="pageNumber >= totalPages" class="col-6 col-md-3 btn btn-warning">Older <i class="mdi mdi-arrow-right"></i></button>
+    <button @click="changePage(pageNumber - 1)" :disabled="pageNumber <= 1" class="col-12 col-md-3 btn btn-warning"> <i class="mdi mdi-arrow-left">Newer</i></button>
+    <div class="col-12 col-md-3 text-center">
+        Page: {{ pageNumber }}
+    </div>
+    <button @click="changePage(pageNumber + 1)" :disabled="pageNumber >= totalPages" class="col-12 col-md-3 btn btn-warning">Older <i class="mdi mdi-arrow-right"></i></button>
     </section>
     
-    <section v-else class="row justify-content-between mb-2 mx-0">
-    <button @click="changePageWithSearch(pageNumber - 1)" :disabled="pageNumber <= 1" class="col-6 col-md-3 btn btn-success">Newer <i class="mdi mdi-arrow-left"></i></button>
-    {{ pageNumber }}
-    <button @click="changePageWithSearch(pageNumber + 1)" :disabled="pageNumber >= totalPages" class="col-6 col-md-3 btn btn-success">Older <i class="mdi mdi-arrow-right"></i></button>
+    <section v-else class="row justify-content-between fw-bold align-items-center mb-2 mx-0">
+    <button @click="changePageWithSearch(pageNumber - 1)" :disabled="pageNumber <= 1" class="col-12 col-md-3 btn btn-success"> <i class="mdi mdi-arrow-left">Newer</i></button>
+    <div class="col-12 col-md-3 text-center">
+        Page: {{ pageNumber }}
+    </div>
+    <button @click="changePageWithSearch(pageNumber + 1)" :disabled="pageNumber >= totalPages" class="col-12 col-md-3 btn btn-success">Older <i class="mdi mdi-arrow-right"></i></button>
     </section>
-
-
-
 
 </template>
 
