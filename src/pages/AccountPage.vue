@@ -1,6 +1,6 @@
 <template>
 
-     <div class="container-fluid text-light">
+    <div class="container-fluid text-light">
       <section class="row mt-4">
         <div class="col-12 col-md-3 bg-dark p-3">
           <h3>Welcome {{ account.name }}</h3>
@@ -142,7 +142,7 @@ export default {
     }
 
   },
-  components: { FormCard }
+ 
 }
 </script>
 
