@@ -4,6 +4,9 @@ export class Account {
     this.email = data.email
     this.name = data.name
     this.picture = data.picture
-    // TODO add additional properties if needed
+    this.github = data.github
+    this.bio = data.bio
+
+
   }
 }

@@ -8,7 +8,7 @@ import { api } from "./AxiosService"
 
 class PostsService {
     async getPosts() {
-        // AppState.posts = []
+        AppState.posts = []
         const res = await api.get('api/posts')
         logger.log('got posts', res.data)
         AppState.posts = res.data.posts.map(post => new Post(post))
@@ -65,7 +65,18 @@ class PostsService {
         AppState.pageNumberById = res.data.page
         AppState.totalPagesById = res.data.totalPages
     }
-
+    async searchPosts(searchTerm) {
+        const res = await api.get(`api/posts?query=${searchTerm}`)
+        logger.log('posts query', res.data)
+        AppState.posts = res.data.posts.map(post => new Post(post))
+        AppState.pageNumber = res.data.page
+        AppState.totalPages = res.data.totalPages
+        AppState.searchTerm = searchTerm
+    }
+    async clearSearch() {
+        AppState.searchTerm = ''
+        await postsService.getPosts()
+    }
 }
 
 export const postsService = new PostsService()

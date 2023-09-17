@@ -32,4 +32,7 @@ export const AppState = reactive({
   /** @type {Flyer[]} */
   flyers: [],
 
+  /**@type {String} */
+  searchTerm: ''
+
 })

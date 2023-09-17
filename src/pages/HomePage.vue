@@ -1,4 +1,9 @@
 <template>
+
+<div class="container my-2">
+  <SearchBar/>
+</div>
+
 <div class="container">
   <section v-if="!searchTerm" class="row justify-content-between mb-2 fw-bold align-items-center">
       <button @click="changePage(pageNumber - 1)" :disabled="pageNumber <= 1" class="col-6 col-md-3 btn btn-warning">Newer <i class="mdi mdi-arrow-left"></i></button>
