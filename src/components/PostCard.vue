@@ -3,8 +3,9 @@
    
         <div class="col-12 card elevation-4">
             <div class="card-header">
+                <router-link style="text-decoration: none; color:black" :to="{ name: 'Profile Page', params: { profileId: post.creator.id } }" @click.stop>
                 <img class="profile-pic" :src="post.creator.picture" alt="">
-                {{ post.creator.name }}
+                {{ post.creator.name }}</router-link> 
             </div>
         <router-link style="text-decoration: none; color:black" :to="{name: 'Post Details', params: {postId: post.id}}">     
             <div class="card-body text-center">
