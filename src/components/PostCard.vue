@@ -1,7 +1,8 @@
 <template>
 
-    <router-link :to="{name: 'Post Details', params: {postId: post.id}}">
+   
         <div class="col-12 card elevation-4">
+        <router-link :to="{name: 'Post Details', params: {postId: post.id}}">     
             <div class="card-header">
                 <img class="profile-pic" :src="post.creator.picture" alt="">
                 {{ post.creator.name }}
@@ -9,13 +10,15 @@
             <div class="card-body">
                 <img class="img-fluid blog-pic" :src="post.imgUrl" alt="">
                 <p class="bg-shade p-2 rounded">{{ post.body }}</p>
+                <p>{{ post.createdAt }}</p>
             </div>
-            
+        </router-link>        
             <div class="card-footer text-end">
-                <h4><span class="mdi mdi-heart-multiple"></span><span class="mdi mdi-heart-multiple-outline"></span></h4>
+
+                <!-- <h4>Likes Count:{{ post.likes.length }}</h4> -->
             </div>
         </div>
-    </router-link>
+    
 </template>
 
 
@@ -27,6 +30,7 @@ export default {
     props: {post: {type: Post, required:true}},
 setup() {
   return {
+
 
   };
 },

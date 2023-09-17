@@ -29,6 +29,7 @@ export default {
     async createPost() {
         try {
             await postsService.createPost(formData.value)
+            formData.value = {}
             Pop.success('You have created a post')
         } catch (error) {
         Pop.error(error)

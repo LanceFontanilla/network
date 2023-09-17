@@ -49,6 +49,11 @@ class PostsService {
             AppState.posts.splice(indexToRemove, 1)
         }
     }
+    async likePost(postId) {
+        const res = await api.post(`api/posts/${postId}/like`)
+        logger.log('liking post', res.data)
+    }
+
     async changePage(url) {
         logger.log('page', url)
         const res = await api.get(url)

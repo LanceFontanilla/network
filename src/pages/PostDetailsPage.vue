@@ -23,7 +23,7 @@
                     <button v-if="activePost.creatorId == account.id" @click="deletePost" class="btn btn-danger">Delete Listing <i class="mdi mdi-delete-forever"></i></button>
                 </div>
                 <div class="card-footer text-end">
-                    <h4><span class="mdi mdi-heart-multiple"></span><span class="mdi mdi-heart-multiple-outline"></span></h4>
+                    <button @click="likePost" class="btn btn-dark">Like Post</button>
                 </div>
             </div>
         </section>
@@ -45,6 +45,8 @@ import Pop from '../utils/Pop';
 import { postsService } from '../services/PostsService';
 import { logger } from '../utils/Logger';
 import { flyersService } from '../services/FlyersService';
+
+
 
 export default {
     
@@ -88,7 +90,16 @@ export default {
                 Pop.error(error)
             }
         },
-        
+        async likePost() {
+            try {
+                const postId = AppState.activePost.id
+                await postsService.likePost(postId)
+                Pop.success('You liked this post!')
+            } catch (error) {
+                Pop.error(error)
+            }
+        },
+
         flyers: computed(() => AppState.flyers),
      }
     },

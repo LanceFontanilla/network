@@ -1,13 +1,13 @@
 <template>
 
      <div class="container-fluid text-light">
-      <section class="row mt-2">
-        <div class="col-4 bg-dark elevation-2 p-2">
+      <section class="row mt-3">
+        <div class="col-3 bg-dark p-3">
           <h3>Welcome {{ account.name }}</h3>
           <img class="rounded" :src="account.picture" alt="" />
           <p>{{ account.email }}</p>
         </div>
-        <div class="col-8 bg-dark">
+        <div class="col-9 bg-dark p-3">
           <h3>Edit Profile</h3>
       
           <form @submit.prevent="editProfile" class="row">
@@ -45,13 +45,13 @@
               <label for="">
               linkedin
               </label>
-              <input v-model="editable.linkdin" class="form-control" type="text">
+              <input v-model="editable.linkedin" class="form-control" type="text">
           </div>
           <div class="mb-2 col-12">
               <label for="">
               bio
               </label>
-              <textarea v-model="editable.bio" rows="10" class="form-control h-90"></textarea>
+              <textarea v-model="editable.bio" rows="10" class="form-control h-80"></textarea>
           </div>
           <div class="text-end">
             <button class="btn btn-success">Save Changes</button>
