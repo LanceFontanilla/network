@@ -40,26 +40,26 @@
 <script>
 import { AppState } from '../AppState';
 import { computed, onMounted } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import Pop from '../utils/Pop';
 import { postsService } from '../services/PostsService';
 import { logger } from '../utils/Logger';
-import { router } from '../router';
-import FlyerCard from '../components/FlyerCard.vue'
 import { flyersService } from '../services/FlyersService';
 
 export default {
     
     setup(){
+        const route = useRoute()
+        const router = useRouter()
         onMounted(() => {
             getPostById()
             getFlyers()
-        });
-        const route = useRoute()
+        })
         async function getPostById(){
             try {
-                await postsService.getPostById(route.params.postId)
-                logger.log('getting post by id', route.params.postId)
+                const postId = route.params.postId
+                await postsService.getPostById(postId)
+                logger.log('getting post by id', postId)
             } catch (error) {
                 Pop.error(error)
             }
@@ -81,7 +81,7 @@ export default {
                 if(await Pop.confirm('Are you sure you want to delete this post?')){
                     const postId = AppState.activePost.id
                     await postsService.deletePost(postId)
-                    router.push({name: 'Posts'})
+                    router.push({name: 'Home'})
                     Pop.success('You have deleted this post.')
                 }
             } catch (error) {
@@ -92,7 +92,7 @@ export default {
         flyers: computed(() => AppState.flyers),
      }
     },
-    components: { FlyerCard }
+    
 };
 </script>
 

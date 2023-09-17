@@ -10,18 +10,33 @@
             <label for="Body">Body</label>
             <textarea v-model="formData.body" type="text" class="form-control"  placeholder="Body" maxlength="300"> </textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Create Post</button>
         </form>
     
     </div>
 </template>
 
 <script>
+import { ref } from 'vue';
+import Pop from '../utils/Pop';
+import { postsService } from '../services/PostsService';
+
 export default {
-setup() {
-  return {};
-},
-};
+    setup() {
+    const formData = ref({})
+    return {
+    formData,
+    async createPost() {
+        try {
+            await postsService.createPost(formData.value)
+            Pop.success('You have created a post')
+        } catch (error) {
+        Pop.error(error)
+        }
+      }
+    }
+  },
+}
 </script>
 
 

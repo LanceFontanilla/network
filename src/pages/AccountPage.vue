@@ -1,4 +1,5 @@
 <template>
+    
   <div class="about text-center">
     <h1>Welcome {{ account.name }}</h1>
     <img class="rounded" :src="account.picture" alt="" />
@@ -7,18 +8,9 @@
 
   <div class="container">
 
-    <form @submit.prevent="createPost" >
-      <div class="form-group">
-        <label for="ImgUrl">ImgUrl</label>
-        <input v-model="formData.imgUrl" type="url" class="form-control"  placeholder="imgUrl" maxlength="300">
-      </div>
-      <div class="form-group">
-        <label for="Body">Body</label>
-        <textarea v-model="formData.body" type="text" class="form-control"  placeholder="Body" maxlength="300"> </textarea>
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    
+    <div>
+      <FormCard/>
+    </div>
   </div>
 
 </template>
@@ -28,6 +20,7 @@ import { computed, ref } from 'vue';
 import { AppState } from '../AppState';
 import Pop from '../utils/Pop';
 import { postsService } from '../services/PostsService';
+import FormCard from '../components/FormCard.vue'
 
 export default {
   setup() {
@@ -45,7 +38,8 @@ export default {
         }
       }
     }
-  }
+  },
+  components: { FormCard }
 }
 </script>
 

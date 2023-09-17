@@ -39,6 +39,7 @@
         <button @click="changePageWithSearch(pageNumberById + 1)" :disabled="pageNumberById >= totalPagesById" class="col-6 col-md-3 btn btn-success">Older <i class="mdi mdi-arrow-right"></i></button>
     </section>
 
+    
 
     <div class="row">
 
@@ -106,9 +107,10 @@ setup() {
     }
   return {
         getPostsByProfileId,
+
     async changePageByProfileId(number) {
         try {
-            await postsService.changePageByProfileId(`api/posts?&page=${number}`)
+            await postsService.changePageByProfileId(route.params.profileId&`api/posts?page=${number}`)
         } catch (error) {
             Pop.error(error)
         }

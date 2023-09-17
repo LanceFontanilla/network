@@ -8,7 +8,7 @@ import { api } from "./AxiosService"
 
 class PostsService {
     async getPosts() {
-        AppState.posts = []
+        // AppState.posts = []
         const res = await api.get('api/posts')
         logger.log('got posts', res.data)
         AppState.posts = res.data.posts.map(post => new Post(post))
@@ -43,6 +43,7 @@ class PostsService {
         const res = await api.delete(`api/posts/${postId}`)
         logger.log('deleting post', res.data)
         AppState.activePost = null
+
         let indexToRemove = AppState.posts.findIndex(post => post.id == postId)
         if (indexToRemove >= 0) {
             AppState.posts.splice(indexToRemove, 1)
@@ -56,9 +57,9 @@ class PostsService {
         AppState.pageNumber = res.data.page
         AppState.totalPages = res.data.totalPages
     }
-    async changePageByProfileId(profileId) {
-        logger.log('profileId', profileId)
-        const res = await api.get(`api/posts?creatorId=${profileId}&`)
+    async changePageByProfileId(profileId, url) {
+        logger.log('profileId', profileId, url)
+        const res = await api.get(`api/posts?creatorId=${profileId}`, url)
         logger.log('change profile page posts', res.data)
         AppState.posts = res.data.posts.map(post => new Post(post))
         AppState.pageNumberById = res.data.page

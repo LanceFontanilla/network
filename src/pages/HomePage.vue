@@ -12,6 +12,7 @@
       <button @click="changePageWithSearch(pageNumber + 1)" :disabled="pageNumber >= totalPages" class="col-6 col-md-3 btn btn-success">Older <i class="mdi mdi-arrow-right"></i></button>
     </section>
 
+
 <div class="row">
 
   <section class="col-8">
@@ -67,6 +68,11 @@ export default {
         }
         return {
           getPosts,
+          posts: computed(() => AppState.posts),
+          flyers: computed(() => AppState.flyers),
+          pageNumber: computed(() => AppState.pageNumber),
+          totalPages: computed(() => AppState.totalPages),
+          searchTerm: computed(() => AppState.searchTerm),
           
           async changePage(number){
             try {
@@ -84,11 +90,6 @@ export default {
                 Pop.error(error)
               }
             },
-            posts: computed(() => AppState.posts),
-            flyers: computed(() => AppState.flyers),
-            pageNumber: computed(() => AppState.pageNumber),
-            totalPages: computed(() => AppState.totalPages),
-            searchTerm: computed(() => AppState.searchTerm),
         };
     },
     components: { PostCard, FlyerCard }
