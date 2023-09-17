@@ -87,7 +87,6 @@ import { computed, ref, watchEffect } from 'vue';
 import { AppState } from '../AppState';
 import Pop from '../utils/Pop';
 import { postsService } from '../services/PostsService';
-import FormCard from '../components/FormCard.vue'
 import { useRouter } from 'vue-router';
 import { logger } from '../utils/Logger';
 import { accountService } from '../services/AccountService';
@@ -142,7 +141,7 @@ export default {
     }
 
   },
- 
+
 }
 </script>
 
