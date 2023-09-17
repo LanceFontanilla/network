@@ -1,30 +1,22 @@
 <template>
 
-   <div class="container">
-   
-  
-<!--<section class="row"> 
-
-     <div class="col-12 profile-card-header elevation-5 mt-3">
-        <img :src="profile.picture" alt="" class="profile-pic"> 
-        
-    </div> 
-  <div class="profile-card-body elevation-5 mb-5">
-        
-        <section class="row">
-         <div class="col-6">
-            <h4>Summer 2018</h4>
+<div class="container">
+<section class="mt-4">
+    <div class="row d-flex justify-content-between text-center">
+        <div class="col-3">
+            <img class="profile-pic img-fluid" src="https://wallpapers.com/images/hd/cool-profile-picture-o6xweez7rh4347gx.jpg" alt=""> 
+            <h3 class="mt-2">Profile Name</h3>
+        </div> 
+        <div class="col-3">
+            links
         </div>
-        <div class="col-6 text-end">
-            Links
-        </div>   
-        </section>
-        
-        <h1>{{ profile.name }}</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit sequi laborum quo quaerat voluptatibus dolorem magni quae eligendi culpa harum cupiditate, modi aut esse tempore impedit quas velit? Commodi, nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere dolores vero cum culpa quos veniam quibusdam, iusto nulla deserunt alias voluptate impedit commodi voluptatibus quasi. Aut, amet. Dicta, laborum delectus!</p>
-        
     </div>
-    </section> -->
+   
+    <div class="p-2 mb-3">
+        <p>Bio Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut adipisci illum asperiores sunt commodi, itaque perferendis officiis fugiat eius explicabo voluptate autem quo quibusdam. Doloremque totam laborum explicabo voluptatibus quibusdam?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid minima totam vero soluta sed quod officiis aliquam dicta, ipsum minus eaque tempora non quia. Eveniet possimus cupiditate laboriosam animi rerum!</p>
+    </div>
+   
+</section>
 
 
     <section v-if="!searchTerm" class="row justify-content-between mb-2 fw-bold align-items-center">
@@ -39,7 +31,7 @@
         <button @click="changePageWithSearch(pageNumberById + 1)" :disabled="pageNumberById >= totalPagesById" class="col-6 col-md-3 btn btn-success">Older <i class="mdi mdi-arrow-right"></i></button>
     </section>
 
-    
+ 
 
     <div class="row">
 
