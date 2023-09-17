@@ -1,7 +1,7 @@
 <template>
 
      <div class="container-fluid text-light">
-      <section class="row mt-3">
+      <section class="row mt-4">
         <div class="col-12 col-md-3 bg-dark p-3">
           <h3>Welcome {{ account.name }}</h3>
           <img class="rounded" :src="account.picture" alt="" />
@@ -73,11 +73,6 @@
         </div>
       </section>
 
-      
-      <div class="text-dark">
-        <h1 class="ms-4 mt-5">Create New Post</h1>
-        <FormCard/>
-      </div>
     </div>
     
     <section class="col-12 d-flex">

@@ -5,9 +5,7 @@
   <main>
     <router-view />
   </main>
-   <footer class="">
-    
-  </footer>
+
 </template>
 
 <script>

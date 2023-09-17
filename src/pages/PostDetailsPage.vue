@@ -22,8 +22,13 @@
                 <div class="text-end">
                     <button v-if="activePost.creatorId == account.id" @click="deletePost" class="btn btn-danger">Delete Listing <i class="mdi mdi-delete-forever"></i></button>
                 </div>
-                <div class="card-footer text-end">
-                    <button @click="likePost" class="btn btn-dark">Like Post</button>
+                <div v-if="user.isAuthenticated" class="card-footer text-end">
+                    <button @click="likePost" class="btn btn-dark">Like Post<span class="mdi mdi-heart-multiple"></span></button>
+                </div>
+                <div v-else class="card-footer text-end">
+                    <h4>Login To Like Post</h4>
+                    <span class="mdi mdi-heart-multiple"></span>
+                    <span class="mdi mdi-heart-multiple-outline"></span>
                 </div>
             </div>
         </section>
@@ -78,6 +83,8 @@ export default {
     return { 
         activePost: computed(()=> AppState.activePost),
         account: computed(()=> AppState.account),
+        user: computed(() => AppState.user),
+          
         async deletePost(){
             try {
                 if(await Pop.confirm('Are you sure you want to delete this post?')){

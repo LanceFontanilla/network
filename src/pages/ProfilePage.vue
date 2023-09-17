@@ -38,7 +38,20 @@
 </section>
 
 
-    <section v-if="!searchTerm" class="row justify-content-between mb-2 fw-bold align-items-center">
+    <div v-if="user.isAuthenticated" class="container-fluid text-dark mb-5">
+    <h1 class="ms-4 mt-5">Create New Post</h1>
+        <FormCard/>
+    </div>
+    <div v-else class="text-center mb-4">
+        <h1>Login To Create New Post</h1>
+          <Login />
+    </div>
+
+    <div class="container mb-4">
+      <SearchBar/>
+    </div>
+
+    <section v-if="!searchTerm" class="row justify-content-between mb-2 fw-bold align-items-center mx-0">
         <button @click="changePageByProfileId(pageNumberById - 1)" :disabled="pageNumberById <= 1" class="col-12 col-md-3 btn btn-warning"> <i class="mdi mdi-arrow-left">Newer</i></button>
         <div class="col-12 col-md-3 text-center">
         {{ pageNumberById }}
@@ -46,7 +59,7 @@
         <button @click="changePageByProfileId(pageNumberByIdById + 1)" :disabled="pageNumberById >= totalPagesById" class="col-12 col-md-3 btn btn-warning">Older <i class="mdi mdi-arrow-right"></i></button>
 
     </section>
-        <section v-else class="row justify-content-between mb-2">
+        <section v-else class="row justify-content-between mb-2 fw-bold align-items-center mx-0">
         <button @click="changePageWithSearch(pageNumberById - 1)" :disabled="pageNumberById <= 1" class="col-12 col-md-3 btn btn-success"><i class="mdi mdi-arrow-left">Newer </i></button>
         <div class="col-12 col-md-3 text-center">
         {{ pageNumberById }}
@@ -86,7 +99,7 @@ import { AppState } from '../AppState';
 import { profilesService } from '../services/ProfilesService';
 import { flyersService } from '../services/FlyersService';
 import { logger } from '../utils/Logger';
-
+import Login from '../components/Login.vue'
 
 export default {
 setup() {
@@ -121,9 +134,8 @@ setup() {
     }
   return {
         getPostsByProfileId,
-
-    async changePageByProfileId(number) {
-        try {
+        async changePageByProfileId(number) {
+            try {
             await postsService.changePageByProfileId(route.params.profileId&`api/posts?page=${number}`)
         } catch (error) {
             Pop.error(error)
@@ -131,6 +143,7 @@ setup() {
             },
         profile: computed(()=> AppState.activeProfile),
         account: computed(()=> AppState.account),
+        user: computed(() => AppState.user),
         posts: computed(()=> AppState.posts),
         pageNumberById: computed(() => AppState.pageNumberById),
         totalPagesById: computed(() => AppState.totalPagesById),
@@ -139,6 +152,7 @@ setup() {
         coverImg: computed(() => `url(${AppState.activeProfile?.coverImg})`)
   };
 },
+    components: { Login }
 };
 </script>
 
