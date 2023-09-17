@@ -1,21 +1,22 @@
 <template>
 
-<div class="container">
+<div v-if="profile" class="container">
 <section class="mt-4">
-    <div class="row d-flex justify-content-between text-center">
+    <div class="row d-flex justify-content-between text-center cover-img">
+
         <div class="col-3">
-            <img class="profile-pic img-fluid" src="https://wallpapers.com/images/hd/cool-profile-picture-o6xweez7rh4347gx.jpg" alt=""> 
-            <h3 class="mt-2">Profile Name</h3>
+            <img class="profile-pic img-fluid" :src="profile.picture" alt=""> 
+            <h3 class="mt-2">{{ profile.name }}</h3>
         </div> 
         <div class="col-3">
             links
         </div>
     </div>
-   
+
     <div class="p-2 mb-3">
-        <p>Bio Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut adipisci illum asperiores sunt commodi, itaque perferendis officiis fugiat eius explicabo voluptate autem quo quibusdam. Doloremque totam laborum explicabo voluptatibus quibusdam?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid minima totam vero soluta sed quod officiis aliquam dicta, ipsum minus eaque tempora non quia. Eveniet possimus cupiditate laboriosam animi rerum!</p>
+        <p>{{ profile.bio }}</p>
     </div>
-   
+
 </section>
 
 
@@ -31,7 +32,7 @@
         <button @click="changePageWithSearch(pageNumberById + 1)" :disabled="pageNumberById >= totalPagesById" class="col-6 col-md-3 btn btn-success">Older <i class="mdi mdi-arrow-right"></i></button>
     </section>
 
- 
+
 
     <div class="row">
 
@@ -114,6 +115,7 @@ setup() {
         totalPagesById: computed(() => AppState.totalPagesById),
         searchTermById: computed(() => AppState.searchTermById),
         flyers: computed(() => AppState.flyers),
+        coverImg: computed(() => `url(${AppState.activeProfile?.coverImg})`)
   };
 },
 };
@@ -122,7 +124,7 @@ setup() {
 
 <style lang="scss" scoped>
 .cover-img{
-  //background-image: v-bind(coverImg);
+  background-image: v-bind(coverImg);
   min-height: 30vh;
   background-position: center;
   background-size: cover;
