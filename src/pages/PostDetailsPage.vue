@@ -27,7 +27,7 @@
                 </div>
                 <div v-if="user.isAuthenticated" class="card-footer text-end">
                     <h4><span class="mdi mdi-heart-multiple"></span> {{ activePost.likes.length }}</h4>
-                    <button @click="likePost" class="btn btn-dark">Like Post <span class="mdi mdi-heart-multiple"></span></button>
+                    <button @click="likePost" class="btn btn-dark">Like Post <span class="mdi mdi-heart-multiple"> </span></button>
                     <!-- <input class="form-check-input" type="checkbox" @click="likePost"> Like Post <span class="mdi mdi-heart-multiple"></span> -->
                 </div>
                 <div v-else class="card-footer text-end">
@@ -55,7 +55,7 @@
 
 <script>
 import { AppState } from '../AppState';
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import Pop from '../utils/Pop';
 import { postsService } from '../services/PostsService';
@@ -69,6 +69,8 @@ export default {
     setup(){
         const route = useRoute()
         const router = useRouter()
+        
+
         onMounted(() => {
             getPostById()
             getFlyers()
