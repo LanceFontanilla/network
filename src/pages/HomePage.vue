@@ -5,18 +5,10 @@
 </div>
 
 <div class="container">
-  <section v-if="!searchTerm" class="row justify-content-between mb-2 fw-bold align-items-center">
-      <button @click="changePage(pageNumber - 1)" :disabled="pageNumber <= 1" class="col-6 col-md-3 btn btn-warning">Newer <i class="mdi mdi-arrow-left"></i></button>
-      {{ pageNumber }}
-      <button @click="changePage(pageNumber + 1)" :disabled="pageNumber >= totalPages" class="col-6 col-md-3 btn btn-warning">Older <i class="mdi mdi-arrow-right"></i></button>
-  
-    </section>
-    <section v-else class="row justify-content-between mb-2">
-      <button @click="changePageWithSearch(pageNumber - 1)" :disabled="pageNumber <= 1" class="col-6 col-md-3 btn btn-success">Newer <i class="mdi mdi-arrow-left"></i></button>
-      {{ pageNumber }}
-      <button @click="changePageWithSearch(pageNumber + 1)" :disabled="pageNumber >= totalPages" class="col-6 col-md-3 btn btn-success">Older <i class="mdi mdi-arrow-right"></i></button>
-    </section>
 
+<div>
+  <ChangePageButtons/>
+</div>
 
 <div class="row">
 
@@ -75,26 +67,8 @@ export default {
           getPosts,
           posts: computed(() => AppState.posts),
           flyers: computed(() => AppState.flyers),
-          pageNumber: computed(() => AppState.pageNumber),
-          totalPages: computed(() => AppState.totalPages),
-          searchTerm: computed(() => AppState.searchTerm),
-          
-          async changePage(number){
-            try {
-                await postsService.changePage(`api/posts?page=${number}`)
-                logger.log('change page posts')
-              } catch (error) {
-                Pop.error(error)
-              }
-            },
-          async changePageWithSearch(number) {
-            try {
-            const searchTerm = AppState.searchTerm
-                await postsService.changePage(`api/posts?query=${searchTerm}&page=${number}`)
-                } catch (error) {
-                Pop.error(error)
-              }
-            },
+
+
         };
     },
     components: { PostCard, FlyerCard }

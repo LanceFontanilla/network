@@ -6,7 +6,7 @@ export class Account {
     this.picture = data.picture
     this.github = data.github
     this.bio = data.bio
-
-
+    this.graduated = data.graduated
+    this.class = data.class
   }
 }

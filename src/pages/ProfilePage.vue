@@ -9,13 +9,25 @@
         </div>
             
         </div>
-        <div class="row d-flex justify-content-between text-center alight-items-center">
-            <div class="col-3 text-center">
-                <h3 class="my-2">{{ profile.name }}</h3>
+        <div class="row d-flex justify-content-evenly text-center">
+            <div class="col-3 d-flex align-items-center justify-content-center">
+                <h3 class="">{{ profile.name }}</h3>
             </div> 
-            
-            <div class="col-3 my-3">
-                links
+            <div class="col-3 d-flex align-items-center justify-content-center">
+            <h4>
+            {{ profile.class }}
+            </h4>
+            </div>
+            <div v-if="profile.graduated == true" class="col-3 cap-card">
+                <img class="img-fluid" src="https://png.pngtree.com/png-vector/20191129/ourmid/pngtree-graduation-icon-graduation-cap-icon-png-image_2047588.jpg" alt="graduation cap">
+            </div>
+            <div class="col-3 my-3 fs-1 links d-flex">
+            <div class="col-6">
+                <a v-if="profile.github" target="_blank" :href="profile.github"> <span class="mdi mdi-github"></span></a>
+            </div>
+            <div class="col-6">
+                <a v-if="profile.linkedin" target="_blank" :href="profile.linkedin"><span class="mdi mdi-linkedin"></span></a>
+            </div>
             </div>
         </div>
             
@@ -151,6 +163,14 @@ setup() {
   border-radius: 50em;
 }
 
+.cap-card{
+    height: 90px;
+    width: 90px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 30em;
+}
+
 .profile-card-header{
    
     min-height: 30vh;
@@ -167,8 +187,11 @@ setup() {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     padding: 20px;
-    
+}
 
+.links{
+    text-decoration: none;
+    color: black
 }
 </style>
 

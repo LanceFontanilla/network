@@ -11,41 +11,53 @@
           <h3>Edit Profile</h3>
       
           <form @submit.prevent="editProfile" class="row">
-          <div class="mb-2 col-6">
+          <div class="mb-2 col-6" >
               <label for="">
               name
               </label>
-              <input v-model="editable.name" class="form-control" type="text">
+              <input v-model="editable.name" class="form-control" type="text" maxlength="300">
           </div>
           <div class="mb-2 col-6">
               <label for="">
               email
               </label>
-              <input v-model="editable.email" class="form-control" type="text">
+              <input v-model="editable.email" class="form-control" type="text" maxlength="300">
+          </div>
+          <div class="mb-2 col-6">
+              <label for="">
+              class
+              </label>
+              <input v-model="editable.class" class="form-control" type="text" maxlength="300">
+          </div>
+          <div class="mb-2 col-6">
+              <label for="">
+              graduated
+              </label>
+              <input v-model="editable.graduated" class="form-control" type="bool" maxlength="5">
           </div>
           <div class="mb-2 col-6">
               <label for="">
               picture
               </label>
-              <input v-model="editable.picture" class="form-control" type="text">
+              <input v-model="editable.picture" class="form-control" type="text" maxlength="300">
           </div>
           <div class="mb-2 col-6">
               <label for="">
               coverImg
               </label>
-              <input v-model="editable.coverImg" class="form-control" type="text">
+              <input v-model="editable.coverImg" class="form-control" type="text" maxlength="300">
           </div>
           <div class="mb-2 col-6">
               <label for="">
               github
               </label>
-              <input v-model="editable.github" class="form-control" type="text">
+              <input v-model="editable.github" class="form-control" type="text" maxlength="300">
           </div>
           <div class="mb-2 col-6">
               <label for="">
               linkedin
               </label>
-              <input v-model="editable.linkedin" class="form-control" type="text">
+              <input v-model="editable.linkedin" class="form-control" type="text" maxlength="300">
           </div>
           <div class="mb-2 col-12">
               <label for="">
