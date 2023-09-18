@@ -29,7 +29,9 @@ export default {
   --main-height: calc(100vh - 32px - 64px);
 }
 
-
+main{
+  background-color: rgb(114, 114, 114);
+}
 
 
 footer {

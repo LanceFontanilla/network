@@ -1,7 +1,7 @@
 <template>
 <div class = "container-fluid ">
 
-  <div class = "card elevation-5 m-5 p-3 welcome-card" >
+  <div class = "card elevation-5 m-5 p-3 welcome-card bg-dark text-light " >
     <h1 class="text-center mb-3">Welcome To The Network!</h1>
     <h3 class="text-center"> The CodeWorks Alumni Network is an online platform used by CodeWorks students to stay connected as they continue their journey as software developers!</h3>
   </div>
@@ -91,7 +91,7 @@ export default {
   user-select: none;
 
   .welcome-card{
-    background-image: url(https://bcw.blob.core.windows.net/public/images/7538647622428924) ;
+    background-image: url(https://bcw.blob.core.windows.net/public/images/7538647622428924);
     max-height: 50vh;
     background-position: center;
     background-size: cover;

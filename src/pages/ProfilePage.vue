@@ -9,6 +9,7 @@
         </div>
             
         </div>
+        <div class="card bg-dark text-light mt-5">
         <div class="row d-flex justify-content-evenly text-center">
             <div class="col-3 d-flex align-items-center justify-content-center">
                 <h3 class="">{{ profile.name }}</h3>
@@ -18,8 +19,8 @@
             {{ profile.class }}
             </h4>
             </div>
-            <div v-if="profile.graduated == true" class="col-3 cap-card">
-                <img class="img-fluid" src="https://png.pngtree.com/png-vector/20191129/ourmid/pngtree-graduation-icon-graduation-cap-icon-png-image_2047588.jpg" alt="graduation cap">
+            <div v-if="profile.graduated == true" class="col-3 mt-2">
+                <img class="img-fluid cap-card" src="https://png.pngtree.com/png-vector/20191129/ourmid/pngtree-graduation-icon-graduation-cap-icon-png-image_2047588.jpg" alt="graduation cap">
             </div>
             <div class="col-3 my-3 fs-1 links d-flex">
             <div class="col-6">
@@ -31,16 +32,18 @@
             </div>
         </div>
             
-    <div class="col-12 p-3 mb-3">
+    <div class="col-12 p-5 py-0 mb-3">
         <p>{{ profile.bio }}</p>
     </div>
-
+</div>
 </section>
 
 
     <div v-if="user.isAuthenticated" class="container-fluid text-dark mb-5">
-    <h1 class="ms-4 mt-5">Create New Post</h1>
-        <FormCard/>
+        <div class="card mt-5">
+            <h1 class="ms-4 mt-2">Create New Post</h1>
+            <FormCard/>
+        </div>
     </div>
     <div v-else class="text-center mb-4">
         <h1>Login To Create New Post</h1>
@@ -179,8 +182,8 @@ setup() {
 }
 
 .cap-card{
-    height: 90px;
-    width: 90px;
+    height: 50px;
+    width: 50px;
     object-fit: cover;
     object-position: center;
     border-radius: 30em;

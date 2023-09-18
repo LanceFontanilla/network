@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-
+    
     <form @submit.prevent="createPost" >
         <div class="form-group">
             <label for="ImgUrl">ImgUrl</label>
@@ -10,7 +10,7 @@
             <label for="Body">Body</label>
             <textarea v-model="formData.body" type="text" class="form-control"  placeholder="Body" maxlength="300"> </textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Create Post</button>
+        <button type="submit" class="btn btn-dark my-3">Create Post</button>
         </form>
     
     </div>

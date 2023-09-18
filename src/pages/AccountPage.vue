@@ -76,7 +76,7 @@
     </div>
     
     <section class="col-12 d-flex">
-      <div v-for="flyer in flyers" :key="flyer.id" class="mx-2 mt-4">
+      <div v-for="flyer in flyers" :key="flyer.id" class="mx-2 my-4">
         <FlyerCardBanner :flyer="flyer"/>
       </div>
     </section>
