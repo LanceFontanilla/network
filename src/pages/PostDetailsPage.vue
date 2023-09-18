@@ -122,7 +122,7 @@ export default {
         },
 
         
-     }
+    }
     },
     
 };
@@ -139,11 +139,11 @@ export default {
     object-position: center;
 }
 .profile-pic{
-  height: 100px;
-  width: 100px;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 50em;
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50em;
 }
 
 
