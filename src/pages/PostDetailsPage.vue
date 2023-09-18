@@ -116,6 +116,7 @@ export default {
                 const postId = AppState.activePost.id
                 await postsService.likePost(postId)
                 Pop.success('You liked this post!')
+                
             } catch (error) {
                 Pop.error(error)
             }

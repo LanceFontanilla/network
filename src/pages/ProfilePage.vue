@@ -19,7 +19,7 @@
             {{ profile.class }}
             </h4>
             </div>
-            <div v-if="profile.graduated == true" class="col-3 mt-2">
+            <div v-if="profile.graduated == true" class="col-3 mt-3">
                 <img class="img-fluid cap-card" src="https://png.pngtree.com/png-vector/20191129/ourmid/pngtree-graduation-icon-graduation-cap-icon-png-image_2047588.jpg" alt="graduation cap">
             </div>
             <div class="col-3 my-3 fs-1 links d-flex">
